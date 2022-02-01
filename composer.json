@@ -1,0 +1,22 @@
+{
+    "name": "najmulfaiz/bpjs",
+    "description": "Wrapper for bridging BPJS Aplicare, VClaim v2, Antrean",
+    "type": "package",
+    "authors": [
+        {
+            "name": "Muhammad Najmul Faiz",
+            "email": "faiznajmul@gmail.com"
+        }
+    ],
+    "license": "mit",
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "NajmulFaiz\\Bpjs\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "nullpunkt/lz-string-php": "dev-master"
+    }
+}

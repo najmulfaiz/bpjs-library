@@ -24,31 +24,31 @@ class WSBpjs extends BpjsService
 
     public function updateJadwalDokter($data = [])
     {
-        $response = $this->post('jadwaldokter/updatejadwaldokter');
+        $response = $this->post('jadwaldokter/updatejadwaldokter', $data);
         return json_decode($response, true);
     }
 
     public function tambahAntrean($data = [])
     {
-        $response = $this->post('antrean/add');
+        $response = $this->post('antrean/add', $data);
         return json_decode($response, true);
     }
 
     public function updateWaktuAntrean($data = [])
     {
-        $response = $this->post('antrean/updatewaktu');
+        $response = $this->post('antrean/updatewaktu', $data);
         return json_decode($response, true);
     }
 
     public function batalAntrean($data = [])
     {
-        $response = $this->post('antrean/batal');
+        $response = $this->post('antrean/batal', $data);
         return json_decode($response, true);
     }
 
     public function listWaktuTaskId($data = [])
     {
-        $response = $this->post('antrean/getlisttask');
+        $response = $this->post('antrean/getlisttask', $data);
         return json_decode($response, true);
     }
 

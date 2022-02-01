@@ -103,7 +103,7 @@ class BpjsService{
     protected function responseV2($data) {
         $result = json_decode($data);
         
-        if ($result->metadata->code) {
+        if ($result->metadata->code && $result->metadata->code == 200) {
             return $this->decryptResponse($result);
         }
 

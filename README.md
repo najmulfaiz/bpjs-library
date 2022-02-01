@@ -21,6 +21,7 @@ $vclaim_conf = [
 // use Referensi service
 $referensi = new NajmulFaiz\Bpjs\VClaim\Referensi($vclaim_conf);
 var_dump($referensi->diagnosa('A00'));
+```
 
 #### Supported Services (WIP) :rocket:
 

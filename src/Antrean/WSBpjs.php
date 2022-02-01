@@ -22,7 +22,7 @@ class WSBpjs extends BpjsService
         return json_decode($response, true);
     }
 
-    public function updateJadwalDOkter($data = [])
+    public function updateJadwalDokter($data = [])
     {
         $response = $this->post('jadwaldokter/updatejadwaldokter');
         return json_decode($response, true);

@@ -100,29 +100,39 @@ class BpjsService{
         return $this;
     }
 
+    protected function responseV2Antrol($data) {
+        $result = json_decode($data);
+        
+        if ($result->metadata->code && in_array($result->metadata->code, [200, 1]) && is_string($result->response)) {
+            return $this->decryptResponse($result->metadata, $result->response);
+        }
+
+        return json_encode($result);
+    }
+    
     protected function responseV2($data) {
         $result = json_decode($data);
         
-        if ($result->metadata->code && $result->metadata->code == 200) {
-            return $this->decryptResponse($result);
+        if ($result->metaData->code == 200 && is_string($result->response)) {
+            return $this->decryptResponse($result->metaData, $result->response);
         }
 
         return json_encode($result);
     }
 
-    protected function decryptResponse($result)
+    protected function decryptResponse($metadata, $response)
     {
         $encrypt_method = 'AES-256-CBC';
         $key            = $this->cons_id . $this->secret_key . $this->timestamp;
         $key_hash       = hex2bin(hash('sha256', $key));
         $iv             = substr(hex2bin(hash('sha256', $key)), 0, 16);
 
-        $output = openssl_decrypt(base64_decode($result->response), $encrypt_method, $key_hash, OPENSSL_RAW_DATA, $iv);
+        $output = openssl_decrypt(base64_decode($response), $encrypt_method, $key_hash, OPENSSL_RAW_DATA, $iv);
 
         $response = LZString::decompressFromEncodedURIComponent($output);
 
         return json_encode([
-            "metadata" => $result->metadata,
+            "metadata" => $metadata,
             "response" => json_decode($response),
         ]);
     }
@@ -204,6 +214,89 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2($response);
+        } catch (\Exception $e) {
+            $result = $e->getResponse()->getBody();
+        }
+        return $result;
+    }
+
+    protected function getAntrol($feature)
+    {
+        $this->headers['Content-Type'] = 'application/json; charset=utf-8';
+        try {
+            $response = $this->clients->request(
+                'GET',
+                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                [
+                    'headers' => $this->headers
+                ]
+            )->getBody()->getContents();
+
+            $result = $this->responseV2Antrol($response);
+        } catch (\Exception $e) {
+            $result = $e->getResponse()->getBody();
+        }
+        return $result;
+    }
+
+    protected function postAntrol($feature, $data = [], $headers = [])
+    {
+        $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        if(!empty($headers)){
+            $this->headers = array_merge($this->headers,$headers);
+        }
+        try {
+            $response = $this->clients->request(
+                'POST',
+                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                [
+                    'headers' => $this->headers,
+                    'json' => $data,
+                ]
+            )->getBody()->getContents();
+
+            $result = $this->responseV2Antrol($response);
+        } catch (\Exception $e) {
+            $result = $e->getResponse()->getBody();
+        }
+        return $result;
+    }
+
+    protected function putAntrol($feature, $data = [])
+    {
+        $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        try {
+            $response = $this->clients->request(
+                'PUT',
+                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                [
+                    'headers' => $this->headers,
+                    'json' => $data,
+                ]
+            )->getBody()->getContents();
+
+            $result = $this->responseV2Antrol($response);
+        } catch (\Exception $e) {
+            $result = $e->getResponse()->getBody();
+        }
+        return $result;
+    }
+
+
+    protected function deleteAntrol($feature, $data = [])
+    {
+        $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        try {
+            $response = $this->clients->request(
+                'DELETE',
+                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                [
+                    'headers' => $this->headers,
+                    'json' => $data,
+                ]
+            )->getBody()->getContents();
+
+            $result = $this->responseV2Antrol($response);
         } catch (\Exception $e) {
             $result = $e->getResponse()->getBody();
         }

@@ -17,6 +17,6 @@
     },
     "require": {
         "guzzlehttp/guzzle": "~6.0",
-        "nullpunkt/lz-string-php": "dev-master"
+        "nullpunkt/lz-string-php": "^1.3"
     }
 }

@@ -6,61 +6,51 @@ class WSBpjs extends BpjsService
 {
     public function refPoli()
     {
-        $response = $this->getAntrol('ref/poli');
-        return json_decode($response, true);
+        return $this->getAntrol('ref/poli');
     }
 
     public function refDokter()
     {
-        $response = $this->getAntrol('ref/dokter');
-        return json_decode($response, true);
+        return $this->getAntrol('ref/dokter');
     }
 
     public function refJadwalDokter($kodepoli, $tanggal)
     {
-        $response = $this->getAntrol('jadwaldokter/kodepoli/'.$kodepoli.'/tanggal/'.$tanggal);
-        return json_decode($response, true);
+        return $this->getAntrol('jadwaldokter/kodepoli/'.$kodepoli.'/tanggal/'.$tanggal);
     }
 
     public function updateJadwalDokter($data = [])
     {
-        $response = $this->postAntrol('jadwaldokter/updatejadwaldokter', $data);
-        return json_decode($response, true);
+        return $this->postAntrol('jadwaldokter/updatejadwaldokter', $data);
     }
 
     public function tambahAntrean($data = [])
     {
-        $response = $this->postAntrol('antrean/add', $data);
-        return json_decode($response, true);
+        return $this->postAntrol('antrean/add', $data);
     }
 
     public function updateWaktuAntrean($data = [])
     {
-        $response = $this->postAntrol('antrean/updatewaktu', $data);
-        return json_decode($response, true);
+        return $this->postAntrol('antrean/updatewaktu', $data);
     }
 
     public function batalAntrean($data = [])
     {
-        $response = $this->postAntrol('antrean/batal', $data);
-        return json_decode($response, true);
+        return $this->postAntrol('antrean/batal', $data);
     }
 
     public function listWaktuTaskId($data = [])
     {
-        $response = $this->postAntrol('antrean/getlisttask', $data);
-        return json_decode($response, true);
+        return $this->postAntrol('antrean/getlisttask', $data);
     }
 
     public function dashboardPerTanggal($tanggal, $waktu)
     {
-        $response = $this->getAntrol('dashboard/waktutunggu/tanggal/'.$tanggal.'/waktu/'.$waktu);
-        return json_decode($response, true);
+        return $this->getAntrol('dashboard/waktutunggu/tanggal/'.$tanggal.'/waktu/'.$waktu);
     }
 
     public function dashboardPerBulan($bulan, $tahun, $waktu)
     {
-        $response = $this->getAntrol('dashboard/waktutunggu/bulan/'.$bulan.'/tahun/'.$tahun.'/waktu/'.$waktu);
-        return json_decode($response, true);
+        return $this->getAntrol('dashboard/waktutunggu/bulan/'.$bulan.'/tahun/'.$tahun.'/waktu/'.$waktu);
     }
 }

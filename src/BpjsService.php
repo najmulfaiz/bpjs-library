@@ -113,11 +113,11 @@ class BpjsService{
     protected function responseV2($data) {
         $result = json_decode($data);
         
-        if ($result->metaData->code == 200 && is_string($result->response)) {
+        if ($result->metaData->code ?? '' == '200' and !empty($result->response) and is_string($result->response)) {
             return $this->decryptResponse($result->metaData, $result->response);
         }
 
-        return json_encode($result);
+        return $result;
     }
 
     protected function decryptResponse($metadata, $response)
@@ -131,10 +131,10 @@ class BpjsService{
 
         $response = LZString::decompressFromEncodedURIComponent($output);
 
-        return json_encode([
-            "metadata" => $metadata,
+        return [
+            "metaData" => $metadata,
             "response" => json_decode($response),
-        ]);
+        ];
     }
 
     protected function get($feature)
@@ -150,9 +150,23 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2($response);
-        } catch (\Exception $e) {
-            $result = $e->getResponse()->getBody();
-        }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
         return $result;
     }
 
@@ -173,9 +187,23 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2($response);
-        } catch (\Exception $e) {
-            $result = $e->getResponse()->getBody();
-        }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
         return $result;
     }
 
@@ -193,9 +221,23 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2($response);
-        } catch (\Exception $e) {
-            $result = $e->getResponse()->getBody();
-        }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
         return $result;
     }
 
@@ -214,9 +256,23 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2($response);
-        } catch (\Exception $e) {
-            $result = $e->getResponse()->getBody();
-        }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
         return $result;
     }
 
@@ -233,9 +289,23 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2Antrol($response);
-        } catch (\Exception $e) {
-            $result = $e->getResponse()->getBody();
-        }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
         return $result;
     }
 
@@ -256,9 +326,23 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2Antrol($response);
-        } catch (\Exception $e) {
-            $result = $e->getResponse()->getBody();
-        }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
         return $result;
     }
 
@@ -276,9 +360,23 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2Antrol($response);
-        } catch (\Exception $e) {
-            $result = $e->getResponse()->getBody();
-        }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
         return $result;
     }
 
@@ -297,9 +395,23 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2Antrol($response);
-        } catch (\Exception $e) {
-            $result = $e->getResponse()->getBody();
-        }
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
         return $result;
     }
 

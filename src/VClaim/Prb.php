@@ -7,31 +7,26 @@ class Prb extends BpjsService
 {
     public function insertPRB($data = [])
     {
-        $response = $this->post('PRB/insert', $data);
-        return json_decode($response, true);
+        return $this->post('PRB/insert', $data);
     }
 
     public function updatePRB($data = [])
     {
-        $response = $this->put('PRB/Update', $data);
-        return json_decode($response, true);
+        return $this->put('PRB/Update', $data);
     }
 
     public function deletePRB($data = [])
     {
-        $response = $this->delete('PRB/Delete', $data);
-        return json_decode($response, true);
+        return $this->delete('PRB/Delete', $data);
     }
 
     public function cariBySRB($noSrb, $noSep)
     {
-        $response = $this->get('prb/'.$noSrb.'/nosep/'.$noSep);
-        return json_decode($response, true);
+        return $this->get('prb/'.$noSrb.'/nosep/'.$noSep);
     }
 
     public function cariByTanggal($tglMulai, $tglAkhir)
     {
-        $response = $this->get('prb/tglMulai/'.$tglMulai.'/tglAkhir/'.$tglAkhir);
-        return json_decode($response, true);
+        return $this->get('prb/tglMulai/'.$tglMulai.'/tglAkhir/'.$tglAkhir);
     }
 }

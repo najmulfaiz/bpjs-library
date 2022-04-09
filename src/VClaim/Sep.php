@@ -7,101 +7,88 @@ class Sep extends BpjsService
 
     public function insertSEP($data = [])
     {
-        $response = $this->post('SEP/1.1/insert', $data);
-        return json_decode($response, true);
+        return $this->post('SEP/1.1/insert', $data);
     }
     public function updateSEP($data = [])
     {
-        $response = $this->put('SEP/1.1/Update', $data);
-        return json_decode($response, true);
+        return $this->put('SEP/1.1/Update', $data);
     }
     public function deleteSEP($data = [])
     {
-        $response = $this->delete('SEP/Delete', $data);
-        return json_decode($response, true);
+        return $this->delete('SEP/Delete', $data);
     }
 
     public function cariSEP($keyword)
     {
-        $response = $this->get('SEP/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('SEP/'.$keyword);
     }
 
     public function insertSEP2($data = [])
     {
-        $response = $this->post('SEP/2.0/insert', $data);
-        return json_decode($response, true);
+        return $this->post('SEP/2.0/insert', $data);
     }
     public function updateSEP2($data = [])
     {
-        $response = $this->put('SEP/2.0/Update', $data);
-        return json_decode($response, true);
+        return $this->put('SEP/2.0/update', $data);
     }
     public function deleteSEP2($data = [])
     {
-        $response = $this->delete('SEP/2.0/Delete', $data);
-        return json_decode($response, true);
+        return $this->delete('SEP/2.0/delete', $data);
     }
 
     public function suplesiJasaRaharja($noKartu, $tglPelayanan)
     {
-        $response = $this->get('sep/JasaRaharja/Suplesi/'.$noKartu.'/tglPelayanan/'.$tglPelayanan);
-        return json_decode($response, true);
+        return $this->get('sep/JasaRaharja/Suplesi/'.$noKartu.'/tglPelayanan/'.$tglPelayanan);
     }
+
     public function dataIndukKecelakaan($noKartu)
     {
-        $response = $this->get('sep/KllInduk/List/'.$noKartu);
-        return json_decode($response, true);
+        return $this->get('sep/KllInduk/List/'.$noKartu);
     }
 
     public function pengajuanPenjaminanSep($data = [])
     {
-        $response = $this->post('Sep/pengajuanSEP', $data);
-        return json_decode($response, true);
+        return $this->post('Sep/pengajuanSEP', $data);
     }
+
     public function approvalPenjaminanSep($data = [])
     {
-        $response = $this->post('Sep/aprovalSEP', $data);
-        return json_decode($response, true);
+        return $this->post('Sep/aprovalSEP', $data);
     }
 
     public function updateTglPlg($data = [])
     {
-        $response = $this->put('Sep/updtglplg', $data);
-        return json_decode($response, true);
+        return $this->put('Sep/updtglplg', $data);
     }
+
     public function updateTglPlg2($data = [])
     {
-        $response = $this->put('Sep/2.0/updtglplg', $data);
-        return json_decode($response, true);
+        return $this->put('SEP/2.0/updtglplg', $data);
     }
 
     public function inacbgSEP($keyword)
     {
-        $response = $this->get('sep/cbg/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('sep/cbg/'.$keyword);
     }
 
     public function dataSEPInternal($nosep)
     {
-        $response = $this->get('SEP/Internal/'.$nosep);
-        return json_decode($response, true);
+        return $this->get('SEP/Internal/'.$nosep);
     }
+
     public function deleteSEPInternal($data = [])
     {
-        $response = $this->delete('SEP/Internal/delete', $data);
-        return json_decode($response, true);
+        return $this->delete('SEP/Internal/delete', $data);
     }
 
     public function fingerprint($noKartu, $tglPelayanan)
     {
-        $response = $this->get('SEP/FingerPrint/Peserta/'.$noKartu.'/TglPelayanan/'.$tglPelayanan);
-        return json_decode($response, true);
+        return $this->get('SEP/FingerPrint/Peserta/'.$noKartu.'/TglPelayanan/'.$tglPelayanan);
     }
 
     public function fingerprintList($tglPelayanan)
     {
-        $response = $this->get('SEP/FingerPrint/List/Peserta/TglPelayanan/'.$tglPelayanan);
-        return json_decode($response, true);
+        return $this->get('SEP/FingerPrint/List/Peserta/TglPelayanan/'.$tglPelayanan);
+        
     }
 }

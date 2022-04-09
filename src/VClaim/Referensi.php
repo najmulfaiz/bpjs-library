@@ -8,84 +8,81 @@ class Referensi extends BpjsService
 
     public function diagnosa($keyword)
     {
-        $response = $this->get('referensi/diagnosa/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('referensi/diagnosa/'.$keyword);
     }
+
     public function poli($keyword)
     {
-        $response = $this->get('referensi/poli/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('referensi/poli/'.$keyword);
     }
+
     public function faskes($kd_faskes = null, $jns_faskes = null)
     {
-        $response = $this->get('referensi/faskes/'.$kd_faskes.'/'.$jns_faskes);
-        return json_decode($response, true);
+        return $this->get('referensi/faskes/'.$kd_faskes.'/'.$jns_faskes);
     }
 
     public function dokterDpjp($jnsPelayanan, $tglPelayanan, $spesialis)
     {
-        $response = $this->get('referensi/dokter/pelayanan/'.$jnsPelayanan.'/tglPelayanan/'.$tglPelayanan.'/Spesialis/'.$spesialis);
-        return json_decode($response, true);
+        return $this->get('referensi/dokter/pelayanan/'.$jnsPelayanan.'/tglPelayanan/'.$tglPelayanan.'/Spesialis/'.$spesialis);
     }
 
     public function propinsi()
     {
-        $response = $this->get('referensi/propinsi');
-        return json_decode($response, true);
+        return $this->get('referensi/propinsi');
     }
 
     public function kabupaten($kdPropinsi)
     {
-        $response = $this->get('referensi/kabupaten/propinsi/'.$kdPropinsi);
-        return json_decode($response, true);
+        return $this->get('referensi/kabupaten/propinsi/'.$kdPropinsi);
     }
 
     public function kecamatan($kdKabupaten)
     {
-        $response = $this->get('referensi/kecamatan/kabupaten/'.$kdKabupaten);
-        return json_decode($response, true);
+        return $this->get('referensi/kecamatan/kabupaten/'.$kdKabupaten);
     }
 
     public function procedure($keyword)
     {
-        $response = $this->get('referensi/procedure/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('referensi/procedure/'.$keyword);
     }
 
     public function kelasRawat()
     {
-        $response = $this->get('referensi/kelasrawat');
-        return json_decode($response, true);
+        return $this->get('referensi/kelasrawat');
     }
 
     public function dokter($keyword)
     {
-        $response = $this->get('referensi/dokter/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('referensi/dokter/'.$keyword);
     }
 
     public function spesialistik()
     {
-        $response = $this->get('referensi/spesialistik');
-        return json_decode($response, true);
+        return $this->get('referensi/spesialistik');
     }
 
     public function ruangrawat()
     {
-        $response = $this->get('referensi/ruangrawat');
-        return json_decode($response, true);
+        return $this->get('referensi/ruangrawat');
     }
 
     public function carakeluar()
     {
-        $response = $this->get('referensi/carakeluar');
-        return json_decode($response, true);
+        return $this->get('referensi/carakeluar');
     }
 
     public function pascapulang()
     {
-        $response = $this->get('referensi/pascapulang');
-        return json_decode($response, true);
+        return $this->get('referensi/pascapulang');
     }
 
+    public function diagnosaProgramPRB()
+    {
+        return $this->get('referensi/diagnosaprb');
+    }
+
+    public function obatGenerikProgramPRB($keyword)
+    {
+        return $this->get('referensi/obatprb/'.$keyword);
+    }
 }

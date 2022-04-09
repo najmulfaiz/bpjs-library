@@ -7,13 +7,11 @@ class Peserta extends BpjsService
 {
     public function getByNoKartu($noKartu, $tglPelayananSEP)
     {
-        $response = $this->get('Peserta/nokartu/'.$noKartu.'/tglSEP/'.$tglPelayananSEP);
-        return json_decode($response, true);
+        return $this->get('Peserta/nokartu/'.$noKartu.'/tglSEP/'.$tglPelayananSEP);
     }
     public function getByNIK($nik, $tglPelayananSEP)
     {
-        $response = $this->get('Peserta/nik/'.$nik.'/tglSEP/'.$tglPelayananSEP);
-        return json_decode($response, true);
+        return $this->get('Peserta/nik/'.$nik.'/tglSEP/'.$tglPelayananSEP);
     }
 
 }

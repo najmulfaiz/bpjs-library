@@ -6,61 +6,56 @@ class RencanaKontrol extends BpjsService
 {
     public function insertRencanaKontrol($data = [])
     {
-        $response = $this->post('RencanaKontrol/insert', $data);
-        return json_decode($response, true);
+        return $this->post('RencanaKontrol/insert', $data);
     }
 
     public function updateRencanaKontrol($data = [])
     {
-        $response = $this->put('RencanaKontrol/Update', $data);
-        return json_decode($response, true);
+        return $this->put('RencanaKontrol/Update', $data);
     }
 
     public function deleteRencanaKontrol($data = [])
     {
-        $response = $this->delete('RencanaKontrol/Delete', $data);
-        return json_decode($response, true);
+        return $this->delete('RencanaKontrol/Delete', $data);
     }
 
     public function insertSPRI($data = [])
     {
-        $response = $this->post('RencanaKontrol/InsertSPRI', $data);
-        return json_decode($response, true);
+        return $this->post('RencanaKontrol/InsertSPRI', $data);
     }
     
     public function updateSPRI($data = [])
     {
-        $response = $this->put('RencanaKontrol/UpdateSPRI', $data);
-        return json_decode($response, true);
+        return $this->put('RencanaKontrol/UpdateSPRI', $data);
     }
 
     public function cariSEP($keyword)
     {
-        $response = $this->get('RencanaKontrol/nosep/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('RencanaKontrol/nosep/'.$keyword);
     }
 
     public function cariByNomorSuratKontrol($keyword)
     {
-        $response = $this->get('RencanaKontrol/noSuratKontrol/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('RencanaKontrol/noSuratKontrol/'.$keyword);
+    }
+
+    public function dataNomorSuratKontrolByNomorKartu($bulan, $tahun, $nokartu, $filter)
+    {
+        return $this->get('RencanaKontrol/ListRencanaKontrol/Bulan/'.$bulan.'/Tahun/'.$tahun.'/Nokartu/'.$nokartu.'/filter/'.$filter);
     }
 
     public function dataNomorSuratKontrol($tglAwal, $tglAkhir, $keyword)
     {
-        $response = $this->get('RencanaKontrol/noSuratKontrol/ListRencanaKontrol/tglAwal/'.$tglAwal.'/tglAkhir/'.$tglAkhir.'/filter/'.$keyword);
-        return json_decode($response, true);
+        return $this->get('RencanaKontrol/noSuratKontrol/ListRencanaKontrol/tglAwal/'.$tglAwal.'/tglAkhir/'.$tglAkhir.'/filter/'.$keyword);
     }
     
     public function dataPoliSpesialistik($jnsKontrol, $nomor, $tglRencanaKontrol)
     {
-        $response = $this->get('RencanaKontrol/ListSpesialistik/JnsKontrol/'.$jnsKontrol.'/nomor/'.$nomor.'/TglRencanaKontrol/'.$tglRencanaKontrol);
-        return json_decode($response, true);
+        return $this->get('RencanaKontrol/ListSpesialistik/JnsKontrol/'.$jnsKontrol.'/nomor/'.$nomor.'/TglRencanaKontrol/'.$tglRencanaKontrol);
     }
 
     public function dataDokter($jnsKontrol, $kdPoli, $tglRencanaKontrol)
     {
-        $response = $this->get('RencanaKontrol/JadwalPraktekDokter/JnsKontrol/'.$jnsKontrol.'/KdPoli/'.$kdPoli.'/TglRencanaKontrol/'.$tglRencanaKontrol);
-        return json_decode($response, true);
+        return $this->get('RencanaKontrol/JadwalPraktekDokter/JnsKontrol/'.$jnsKontrol.'/KdPoli/'.$kdPoli.'/TglRencanaKontrol/'.$tglRencanaKontrol);
     }
 }

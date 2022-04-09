@@ -6,23 +6,19 @@ class LembarPengajuanKlaim extends BpjsService
 {
     public function insertLPK($data = [])
     {
-        $response = $this->post('LPK/insert', $data);
-        return json_decode($response, true);
+        return $this->post('LPK/insert', $data);
     }
     public function updateLPK($data = [])
     {
-        $response = $this->put('LPK/update', $data);
-        return json_decode($response, true);
+        return $this->put('LPK/update', $data);
     }
     public function deleteLPK($data = [])
     {
-        $response = $this->delete('LPK/delete', $data);
-        return json_decode($response, true);
+        return $this->delete('LPK/delete', $data);
     }
 
     public function cariLPK($tglMasuk, $jnsPelayanan)
     {
-        $response = $this->get('LPK/TglMasuk/'.$tglMasuk.'/JnsPelayanan/'.$jnsPelayanan);
-        return json_decode($response, true);
+        return $this->get('LPK/TglMasuk/'.$tglMasuk.'/JnsPelayanan/'.$jnsPelayanan);
     }
 }

@@ -22,7 +22,7 @@ $antrean_conf = [
     'cons_id'      => '',
     'secret_key'   => '',
     'user_key'     => '',
-    'base_url'     => 'https://apijkn.bpjs-kesehatan.go.id/',
+    'base_url'     => 'https://apijkn.bpjs-kesehatan.go.id',
     'service_name' => 'antreanrs'
 ];
 

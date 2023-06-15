@@ -19,6 +19,16 @@ class WSBpjs extends BpjsService
         return $this->getAntrol('jadwaldokter/kodepoli/'.$kodepoli.'/tanggal/'.$tanggal);
     }
 
+    public function refPoliFingerPrint()
+    {
+        return $this->getAntrol('ref/poli/fp');
+    }
+
+    public function refPasienFingerPrint($type, $nomor)
+    {
+        return $this->getAntrol('ref/pasien/fp/identitas/' . $type . '/noidentitas/' . $nomor);
+    }
+
     public function updateJadwalDokter($data = [])
     {
         return $this->postAntrol('jadwaldokter/updatejadwaldokter', $data);
@@ -27,6 +37,11 @@ class WSBpjs extends BpjsService
     public function tambahAntrean($data = [])
     {
         return $this->postAntrol('antrean/add', $data);
+    }
+
+    public function tambahAntreanFarmasi($data = [])
+    {
+        return $this->postAntrol('antrean/farmasi/add', $data);
     }
 
     public function updateWaktuAntrean($data = [])
@@ -52,5 +67,25 @@ class WSBpjs extends BpjsService
     public function dashboardPerBulan($bulan, $tahun, $waktu)
     {
         return $this->getAntrol('dashboard/waktutunggu/bulan/'.$bulan.'/tahun/'.$tahun.'/waktu/'.$waktu);
+    }
+
+    public function antreanPerTanggal($tanggal)
+    {
+        return $this->getAntrol('antrean/pendaftaran/tanggal/' . $tanggal);
+    }
+
+    public function antreanPerKodeBooking($kodebooking)
+    {
+        return $this->getAntrol('antrean/pendaftaran/kodebooking/' . $kodebooking);
+    }
+
+    public function antreanBelumDilayani()
+    {
+        return $this->getAntrol('antrean/pendaftaran/aktif');
+    }
+
+    public function antreanBelumDilayaniPerPoliPerDokterPerHariPerJamPraktek($kodepoli, $kodedokter, $hari, $jampraktek)
+    {
+        return $this->getAntrol('antrean/pendaftaran/kodepoli/' . $kodepoli . '/kodedokter/' . $kodedokter . '/hari/' . $hari . '/jampraktek/' . $jampraktek);
     }
 }

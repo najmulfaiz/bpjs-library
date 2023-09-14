@@ -4,6 +4,9 @@ require 'config.php';
 
 header('Content-type: Application/Json');
 
-$antrean = new NajmulFaiz\Bpjs\Antrean\WSBpjs($antrean_conf);
+$icare = new NajmulFaiz\Bpjs\iCare\Webservice($icare_conf);
 
-echo json_encode($antrean->antreanBelumDilayaniPerPoliPerDokterPerHariPerJamPraktek('', '', '', ''));
+var_dump($icare->fkrtl([
+  "param" => null,
+  "kodedokter" => null
+]));

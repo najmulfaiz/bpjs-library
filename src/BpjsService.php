@@ -102,9 +102,8 @@ class BpjsService{
 
     protected function responseV2Antrol($data) {
         $result = json_decode($data);
-        
-        if (in_array($result->metadata->code, [200, 1]) && isset($result->response) && is_string($result->response)) {
-        // if ($result->metadata->code && in_array($result->metadata->code, [200, 1]) && is_string($result->response)) {
+
+        if (($result->metadata->code && in_array($result->metadata->code, [200, 1])) && (isset($result->response) && is_string($result->response))) {
             return $this->decryptResponse($result->metadata, $result->response);
         }
 
@@ -113,7 +112,7 @@ class BpjsService{
     
     protected function responseV2($data) {
         $result = json_decode($data);
-        
+
         if ($result->metaData->code ?? '' == '200' and !empty($result->response) and is_string($result->response)) {
             return $this->decryptResponse($result->metaData, $result->response);
         }
@@ -396,6 +395,43 @@ class BpjsService{
             )->getBody()->getContents();
 
             $result = $this->responseV2Antrol($response);
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
+        return $result;
+    }
+
+    protected function postiCare($feature, $data = [], $headers = [])
+    {
+        $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        if(!empty($headers)){
+            $this->headers = array_merge($this->headers,$headers);
+        }
+        try {
+            $response = $this->clients->request(
+                'POST',
+                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                [
+                    'headers' => $this->headers,
+                    'json' => $data,
+                ]
+            )->getBody()->getContents();
+
+            $result = $this->responseV2($response);
         } catch (\GuzzleHttp\Exception\RequestException $e) {
 			if ($e->getCode() == 0) {
 				$handlerContext = $e->getHandlerContext();

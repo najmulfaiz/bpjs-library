@@ -6,30 +6,38 @@ $antrean_conf_dev = [
     'cons_id'      => '',
     'secret_key'   => '',
     'user_key'     => '',
-    'base_url'     => 'https://apijkn-dev.bpjs-kesehatan.go.id',
-    'service_name' => 'antreanrs_dev'
+    'base_url'     => '',
+    'service_name' => ''
 ];
 
 $vclaim_conf_dev = [
     'cons_id'      => '',
     'secret_key'   => '',
     'user_key'     => '',
-    'base_url'     => 'https://apijkn-dev.bpjs-kesehatan.go.id',
-    'service_name' => 'vclaim-rest-dev'
+    'base_url'     => '',
+    'service_name' => ''
 ];
 
 $antrean_conf = [
     'cons_id'      => '',
     'secret_key'   => '',
     'user_key'     => '',
-    'base_url'     => 'https://apijkn.bpjs-kesehatan.go.id',
-    'service_name' => 'antreanrs'
+    'base_url'     => '',
+    'service_name' => ''
 ];
 
 $vclaim_conf = [
     'cons_id'      => '',
     'secret_key'   => '',
     'user_key'     => '',
-    'base_url'     => 'https://apijkn.bpjs-kesehatan.go.id',
-    'service_name' => 'vclaim-rest'
+    'base_url'     => '',
+    'service_name' => ''
+];
+
+$icare_conf = [
+    'cons_id'      => '',
+    'secret_key'   => '',
+    'user_key'     => '',
+    'base_url'     => '',
+    'service_name' => ''
 ];

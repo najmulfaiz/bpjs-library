@@ -56,6 +56,11 @@ class Sep extends BpjsService
         return $this->post('Sep/aprovalSEP', $data);
     }
 
+    public function listDataPersetujuanSep($bulan, $tahun)
+    {
+        return $this->get('Sep/persetujuanSEP/list/bulan/' . $bulan . '/tahun/' . $tahun);
+    }
+
     public function updateTglPlg($data = [])
     {
         return $this->put('Sep/updtglplg', $data);
@@ -90,5 +95,15 @@ class Sep extends BpjsService
     {
         return $this->get('SEP/FingerPrint/List/Peserta/TglPelayanan/'.$tglPelayanan);
         
+    }
+
+    public function randomQuestion($nokapst, $tglPelayanan)
+    {
+        return $this->get('SEP/FingerPrint/randomquestion/faskesterdaftar/nokapst/' . $nokapst . '/tglsep/' . $tglPelayanan);
+    }
+
+    public function randomAnswer($data = [])
+    {
+        return $this->post('SEP/FingerPrint/randomanswer', $data);
     }
 }

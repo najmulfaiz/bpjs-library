@@ -103,11 +103,15 @@ class BpjsService{
     protected function responseV2Antrol($data) {
         $result = json_decode($data);
 
-        if (($result->metadata->code && in_array($result->metadata->code, [200, 1])) && (isset($result->response) && is_string($result->response))) {
-            return $this->decryptResponse($result->metadata, $result->response);
+        if (in_array($result->metadata->code, [200, 1]) && isset($result->response) && is_string($result->response)) {
+            // if (($result->metadata->code && in_array($result->metadata->code, [200, 1])) && (isset($result->response) && is_string($result->response))) {
+            return json_decode(json_encode($this->decryptResponse($result->metadata, $result->response)), false);
         }
 
-        return json_encode($result);
+        return json_decode(json_encode([
+            "metaData" => $result->metadata,
+            "response" => isset($result->response) ? json_decode($result->response) : null,
+        ]), false);
     }
     
     protected function responseV2($data) {

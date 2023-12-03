@@ -121,7 +121,10 @@ class BpjsService{
             return $this->decryptResponse($result->metaData, $result->response);
         }
 
-        return $result;
+        return json_decode(json_encode([
+            "metaData" => $result->metaData,
+            "response" => isset($result->response) ? json_decode($result->response) : null,
+        ]), false);
     }
 
     protected function decryptResponse($metadata, $response)

@@ -4,9 +4,7 @@ require 'config.php';
 
 header('Content-type: Application/Json');
 
-$icare = new NajmulFaiz\Bpjs\iCare\Webservice($icare_conf);
+$vclaim = new NajmulFaiz\Bpjs\VClaim\Peserta($icare_conf);
+$peserta = $vclaim->getByNIK('350718210997000', date('Y-m-d'));
 
-var_dump($icare->fkrtl([
-  "param" => null,
-  "kodedokter" => null
-]));
+die(json_encode($peserta));

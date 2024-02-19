@@ -41,3 +41,11 @@ $icare_conf = [
     'base_url'     => '',
     'service_name' => ''
 ];
+
+$apotek_conf = [
+    'cons_id'      => '',
+    'secret_key'   => '',
+    'user_key'     => '',
+    'base_url'     => '',
+    'service_name' => 'v'
+];

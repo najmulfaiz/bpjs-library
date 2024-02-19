@@ -35,6 +35,8 @@ var_dump($referensi->diagnosa('A00'));
 - [x] Rujukan
 - [x] SEP
 - [x] Antrean RS WS BPJS
+- [x] iCare
+- [x] E-Farmasi
 
 #### BASED ON
 https://github.com/nsulistiyawan/bpjs

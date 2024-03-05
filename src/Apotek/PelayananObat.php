@@ -12,7 +12,7 @@ class PelayananObat extends BpjsService
     
     public function daftarPelayananObat($nosep)
     {
-        return $this->get('obat/daftar/'.$nosep);
+        return $this->get('pelayanan/obat/daftar/'.$nosep);
     }
 
     public function riwayatPelayananObat($tglAwal = null, $tglAkhir = null, $noKartu = null)

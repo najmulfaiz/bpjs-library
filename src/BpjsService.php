@@ -55,6 +55,11 @@ class BpjsService{
     /**
      * @var string
      */
+    private $kode_faskes;
+
+    /**
+     * @var string
+     */
     private $service_name;
 
     public function __construct($configurations)
@@ -100,6 +105,15 @@ class BpjsService{
         return $this;
     }
 
+    protected function getEncryptKey()
+    {
+        $data = $this->cons_id . '&' . $this->timestamp;
+        $signature = hash_hmac('sha256', $data, $this->secret_key, true);
+        $encodedSignature = base64_encode($signature);
+        $this->signature = $encodedSignature;
+        return $this->cons_id . $this->secret_key . $this->kode_faskes;
+    }
+
     protected function responseV2Antrol($data) {
         $result = json_decode($data);
 
@@ -115,7 +129,7 @@ class BpjsService{
     }
     
     protected function responseV2($data) {
-        $result = json_decode($data);
+        return $result = json_decode($data);
 
         if ($result->metaData->code ?? '' == '200' and !empty($result->response) and is_string($result->response)) {
             return $this->decryptResponse($result->metaData, $result->response);
@@ -423,6 +437,43 @@ class BpjsService{
     }
 
     protected function postiCare($feature, $data = [], $headers = [])
+    {
+        $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        if(!empty($headers)){
+            $this->headers = array_merge($this->headers,$headers);
+        }
+        try {
+            $response = $this->clients->request(
+                'POST',
+                $this->base_url . '/' . $this->service_name . '/' . $feature,
+                [
+                    'headers' => $this->headers,
+                    'json' => $data,
+                ]
+            )->getBody()->getContents();
+
+            $result = $this->responseV2($response);
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+			if ($e->getCode() == 0) {
+				$handlerContext = $e->getHandlerContext();
+				$result = [
+					'metaData' => [
+						'code' => $handlerContext['errno'],
+						'message' => $handlerContext['error']
+					]
+				];
+			} else
+				$result = [
+					'metaData' => [
+						'code' => $e->getCode(),
+						'message' => $e->getMessage()
+					]
+				];
+		}
+        return $result;
+    }
+
+    protected function postEclaim($feature, $data = [], $headers = [])
     {
         $this->headers['Content-Type'] = 'application/x-www-form-urlencoded';
         if(!empty($headers)){
